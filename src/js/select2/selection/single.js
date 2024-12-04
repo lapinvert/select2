@@ -97,7 +97,7 @@ define([
 
     var title = selection.title || selection.text;
 
-    if (title) {
+    if (title && this.options.get('renderTitle')) {
       $rendered.attr('title', title);
     } else {
       $rendered[0].removeAttribute('title');

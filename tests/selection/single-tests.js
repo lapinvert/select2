@@ -225,3 +225,35 @@ QUnit.test('escapeMarkup is being used', function (assert) {
     'The text should be escaped by default to prevent injection'
   );
 });
+
+QUnit.test('renderTitle renders title', function(assert) {
+  var selection = new SingleSelection(
+    $('#qunit-fixture .single'),
+    options
+  );
+
+  var $selection = selection.render();
+  var $rendered = $selection.find('.select2-selection__rendered');
+
+  selection.update([{
+    text: 'test'
+  }]);
+
+  assert.equal($rendered.attr('title'), 'test');
+});
+
+QUnit.test('no renderTitle does not render any title', function(assert) {
+  var selection = new SingleSelection(
+    $('#qunit-fixture .single'),
+    new Options({ renderTitle: false })
+  );
+
+  var $selection = selection.render();
+  var $rendered = $selection.find('.select2-selection__rendered');
+
+  selection.update([{
+    text: 'test'
+  }]);
+
+  assert.equal($rendered.attr('title'), undefined);
+});
